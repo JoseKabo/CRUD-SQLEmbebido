@@ -45,6 +45,30 @@ Public Class Form1
     End Sub
 
     Private Sub dgv_prueba_UserDeletedRow(sender As Object, e As DataGridViewRowEventArgs) Handles dgv_prueba.UserDeletedRow
+
+    End Sub
+
+
+    Private Sub dgv_prueba_SelectionChanged(sender As Object, e As EventArgs) Handles dgv_prueba.SelectionChanged
+        If (Me.dgv_prueba.CurrentRow.IsNewRow() = False) Then
+            Me.id = Me.dgv_prueba.CurrentRow.DataBoundItem("id")
+        End If
+    End Sub
+
+    Private Sub refresh_Click(sender As Object, e As EventArgs) Handles refresh.Click
+        Me.querySQL = "select * from gestores_bd"
+        Me.cmd = New SqlCommand(querySQL, connection)
+        Try
+            Me.dAdapter = New SqlDataAdapter(cmd)
+            Me.dSet = New DataSet
+            dAdapter.Fill(dSet, "gestores_bd")
+            Me.dgv_prueba.DataSource = dSet.Tables("gestores_bd")
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try
+    End Sub
+
+    Private Sub dgv_prueba_UserDeletingRow(sender As Object, e As DataGridViewRowCancelEventArgs) Handles dgv_prueba.UserDeletingRow
         Me.connection.Open()
         Me.querySQL = "DELETE FROM gestores_bd WHERE id =" + Me.id
         MessageBox.Show(Me.querySQL)
@@ -58,12 +82,5 @@ Public Class Form1
             MessageBox.Show(ex.Message)
         End Try
         Me.connection.Close()
-    End Sub
-
-
-    Private Sub dgv_prueba_SelectionChanged(sender As Object, e As EventArgs) Handles dgv_prueba.SelectionChanged
-        If (Me.dgv_prueba.CurrentRow.IsNewRow() = False) Then
-            Me.id = Me.dgv_prueba.CurrentRow.DataBoundItem("id")
-        End If
     End Sub
 End Class

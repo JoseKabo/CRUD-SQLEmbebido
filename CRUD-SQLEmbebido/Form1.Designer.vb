@@ -27,6 +27,7 @@ Partial Class Form1
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.dgv_prueba = New System.Windows.Forms.DataGridView()
+        Me.refresh = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         CType(Me.dgv_prueba, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -35,6 +36,7 @@ Partial Class Form1
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(107, Byte), Integer), CType(CType(107, Byte), Integer))
+        Me.Panel1.Controls.Add(Me.refresh)
         Me.Panel1.Controls.Add(Me.Label2)
         Me.Panel1.Controls.Add(Me.Label1)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
@@ -88,6 +90,15 @@ Partial Class Form1
         Me.dgv_prueba.Size = New System.Drawing.Size(781, 297)
         Me.dgv_prueba.TabIndex = 0
         '
+        'refresh
+        '
+        Me.refresh.Location = New System.Drawing.Point(694, 110)
+        Me.refresh.Name = "refresh"
+        Me.refresh.Size = New System.Drawing.Size(75, 23)
+        Me.refresh.TabIndex = 2
+        Me.refresh.Text = "Refrescar"
+        Me.refresh.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -111,4 +122,5 @@ Partial Class Form1
     Friend WithEvents Label1 As Label
     Friend WithEvents Panel2 As Panel
     Friend WithEvents dgv_prueba As DataGridView
+    Friend WithEvents refresh As Button
 End Class
